@@ -11,7 +11,7 @@ well as the CCLS2014 code.
 A detailed description of the algorithm and benchmarks are available in 
 Huang et al, "Finding and proving the exact ground state of a generalized
 Ising model by convex optimization and MAXSAT" PRB (2016) 
-([current preprint](https://arxiv.org/abs/1604.06722))
+([preprint](https://arxiv.org/abs/1604.06722))
 
 
 Authors:
@@ -25,7 +25,7 @@ Contact: Wenxuan Huang (key01027ATmit.edu), Daniil Kitchaev (dkitchATmit.edu)
 If you use this code in your work, please cite Huang et al, "Finding and
 proving the exact ground state of a generalized Ising model by convex
 optimization and MAXSAT" PRB (2016) -
-([current arXiv preprint](https://arxiv.org/abs/1604.06722))
+([preprint](https://arxiv.org/abs/1604.06722))
 
 Prerequisites
 -------------------------------------------------------------------------------
@@ -122,9 +122,5 @@ repulsive nearest-neighbor term, attractive next-nearest neighbor term,
 and slightly repulsive next-nearest-neighbor triplet.
 
 The second example is analogous to the cluster expansion provided for the
-Li-graphite system in [Persson et al, PRB 82, 125416 (2010)](http://journals.aps.org/prb/abstract/10.1103/PhysRevB.82.125416)
- as a model of Li intercalation into graphite. It is a 2D cluster expansion on a triangular
-lattice, with pair terms only.
-
-In both cases the clusters are defined using the 0/1 convention for site
-occupancy.
+Li-graphite system in [Persson et al, PRB 82, 125416 (2010)](http://journals.aps.org/prb/abstract/10.1103/PhysRevB.82.125416).
+ It is a 2D cluster expansion on a triangular lattice, with pair terms only.
