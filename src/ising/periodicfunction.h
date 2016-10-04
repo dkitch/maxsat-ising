@@ -4,7 +4,6 @@
  * Maintainer: Wenxuan Huang, Daniil Kitchaev
  * Date: 15 March, 2015
  *
- * Copyright: Wenxuan Huang (C) 2014, All rights reserved.
  */
 
 #ifndef PERIODICFUNCTION_H
