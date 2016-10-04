@@ -1,9 +1,5 @@
-# maxsat-ising
-Ground-state solver for a generalized Ising model, based on MAXSAT and 
-convex optimization
+#MAXSAT-Ising
 
-###############################################################################
-Package description:
 This package contains the generalized Ising model ground
 state solver. There are three subpackages - "ising", which is the solver
 iself, "ccls", which is a MAX-SAT solver optimized for spin-glass problems,
@@ -11,23 +7,27 @@ and "ccls_lb", which is a modified version of the ccls solver optimized for
 this particular use case. These packages are based on the AkMAXSAT code, as
 well as the CCLS2014 code.
 
+
 A detailed description of the algorithm and benchmarks are available in 
-Huang et al, PRB (2016) [current preprint: https://arxiv.org/abs/1604.06722]
+Huang et al, PRB (2016) ([current preprint](https://arxiv.org/abs/1604.06722))
 
-Author:	Wenxuan Huang
-	Daniil Kitchaev
 
-Contact: Wenxuan Huang (key01027@mit.edu)
- 	 Daniil Kitchaev (dkitch@mit.edu)
+Author:	Wenxuan Huang, Daniil Kitchaev
+
+
+Contact: Wenxuan Huang (key01027@mit.edu), Daniil Kitchaev (dkitch@mit.edu)
+
 
 If you use this code in your work, please cite Huang et al, PRB (2016) -
-current arXiv preprint: https://arxiv.org/abs/1604.06722
+([current arXiv preprint](https://arxiv.org/abs/1604.06722))
 
-###############################################################################
-Prerequisites:
+Prerequisites
+-------------------------------------------------------------------------------
 This package is tested using GCC 4.8.2, Gurobi 6.5.2 and 6.0.2, and Boost 1.57.
 
-Installation:
+
+Installation
+-------------------------------------------------------------------------------
 1. Set the Gurobi INCLUDE and LIB directories in the build.sh script. Make sure
 	a recent version of Boost is installed, including the regex module.
 2. Run the build.sh script
@@ -37,7 +37,9 @@ so all compilation must be done with GCC 4.8 or earlier. Note that on recent
 versions of Ubuntu, this requires rebuilding Boost with GCC 4.8, as the
 defaults available have been updated to GCC 5.
 
-Execution:
+
+Execution
+-------------------------------------------------------------------------------
 The bin directory contains a number of executables - these must at all times
 be located in the same directory, so if you move them, they must all be moved
 together. The main executable is "ising", while the others are needed for
@@ -49,13 +51,16 @@ And run the main executable:
     cd <run_dir>/
     ./ising
 
-Input:
+
+Input
+-------------------------------------------------------------------------------
 The "ising" executable assumes the presence of two files in its directory -
 "J_in.in", which contains the cluster expansion ECI's, and "J_config.in",
 which contains the setup for the solver execution. See the documentation
 below and provided examples for the format of these files.
 
-ECIs (J_in.in) ----------------------------------------------------------------
+
+###ECIs (J_in.in)
 The first line of this file is
 
 Constant <E0>
@@ -78,7 +83,7 @@ where:
   at 1 rather than 0 as the 0-clusters are arbitary reference states.
 - <ECI> gives the ECI (energy) associated with the cluster  
 
-Configuration (J_config.in) ---------------------------------------------------
+### Configuration (J_config.in)
 NSITES: Maximum number of sites in a unit cell to consider (default=50)
 NLOOPS: Number of lower bound optimization loops (default=4)
 LABEL: Label for the calculation (default=IS0)
@@ -93,8 +98,9 @@ MODE_VERBOSITY: 0 - Silent
                 1 - Input and output to stdout (default)
                 2 - General calculation defaults to stdout
                 3 - Every little detail to stdout
-###############################################################################
+
 Examples:
+------------------------------------------------------------------------------
 Two examples are provided. The first is a simple square lattice with a
 repulsive nearest-neighbor term, attractive next-nearest neighbor term,
 and slightly repulsive next-nearest-neighbor triplet.
