@@ -97,17 +97,17 @@ where:
 + LABEL: Label for the calculation (default=IS0)
 + PREC: Numerical precision for the ECI's (default 1e-6)
 + MODE_JPLUSMINUS:
-..+ 0 - ECI's and correlations in 0/1 form (default) for site occupancy
-..+ 1 - ECI's and correlations in -1/+1 form for site occupancy
+    + 0 - ECI's and correlations in 0/1 form (default) for site occupancy
+    + 1 - ECI's and correlations in -1/+1 form for site occupancy
 + MODE_SOLVER:
-..+ 0 - Exact solution
-..+ 1 - Pseudo-optimization without proof (default)
-..+ 2 - Pseudo-optimization with proof
+    + 0 - Exact solution
+    + 1 - Pseudo-optimization without proof (default)
+    + 2 - Pseudo-optimization with proof
 + MODE_VERBOSITY:
-..+ 0 - Silent
-..+ 1 - Input and output to stdout (default)
-..+ 2 - General calculation defaults to stdout
-..+ 3 - Every little detail to stdout
+    + 0 - Silent
+    + 1 - Input and output to stdout (default)
+    + 2 - General calculation defaults to stdout
+    + 3 - Every little detail to stdout
 
 Examples:
 ------------------------------------------------------------------------------
