@@ -15,7 +15,7 @@ Huang et al, PRB (2016) ([current preprint](https://arxiv.org/abs/1604.06722))
 Author:	Wenxuan Huang, Daniil Kitchaev
 
 
-Contact: Wenxuan Huang (key01027@mit.edu), Daniil Kitchaev (dkitch@mit.edu)
+Contact: Wenxuan Huang (key01027ATmit.edu), Daniil Kitchaev (dkitchATmit.edu)
 
 
 If you use this code in your work, please cite Huang et al, PRB (2016) -
