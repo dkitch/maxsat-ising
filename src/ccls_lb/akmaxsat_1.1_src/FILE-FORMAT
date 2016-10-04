@@ -1,0 +1,130 @@
+Input format
+
+The input file must be read from the file given in parameter. For example:
+
+./mysolver <input_file_name>
+Max-SAT input format
+
+The input file format for Max-SAT will be in DIMACS format:
+
+c
+c comments Max-SAT
+c
+p cnf 3 4
+1 -2 0
+-1 2 -3 0
+-3 2 0
+1 3 0
+The file can start with comments, that is lines beginning with the character 'c'.
+Right after the comments, there is the line "p cnf nbvar nbclauses" indicating that the instance is in CNF format; nbvar is the number of a variables appearing in the file; nbclauses is the exact number of clauses contained in the file.
+Then the clauses follow. Each clause is a sequence of distinct non-null numbers between -nbvar and nbvar ending with 0 on the same line. Positive numbers denote the corresponding variables. Negative numbers denote the negations of the corresponding variables.
+Weighted Max-SAT input format
+
+In Weighted Max-SAT, the parameters line is "p wcnf nbvar nbclauses". The weights of each clause will be identified by the first integer in each clause line. The weight of each clause is an integer greater than or equal to 1, and smaller than 263.
+
+Example of Weighted Max-SAT formula:
+
+c
+c comments Weighted Max-SAT
+c
+p wcnf 3 4
+10 1 -2 0
+3 -1 2 -3 0
+8 -3 2 0
+5 1 3 0
+Partial Max-SAT input format
+
+In Partial Max-SAT, the parameters line is "p wcnf nbvar nbclauses top". We associate a weight with each clause, wich is the first integer in the clause. Weigths must be greater than or equal to 1, and smaller than 263. Hard clauses have weigth top and soft clauses have weigth 1. We assure that top is a weight always greater than the sum of the weights of violated soft clauses.
+
+Example of Partial Max-SAT formula:
+
+c
+c comments Partial Max-SAT
+c
+p wcnf 4 5 15
+15 1 -2 4 0
+15 -1 -2 3 0
+1 -2 -4 0
+1 -3 2 0
+1 1 3 0
+Weigthed Partial Max-SAT input format
+
+In Weigthed Partial Max-SAT, the parameters line is "p wcnf nbvar nbclauses top". We associate a weight with each clause, wich is the first integer in the clause. Weigths must be greater than or equal to 1, and smaller than 263. Hard clauses have weigth top and soft clauses have a weigth smaller than top. We assure that top is a weight always greater than the sum of the weights of violated soft clauses.
+
+Example of Weigthed Partial Max-SAT formula:
+
+c
+c comments Weigthed Partial Max-SAT
+c
+p wcnf 4 5 16
+16 1 -2 4 0
+16 -1 -2 3 0
+8 -2 -4 0
+4 -3 2 0
+3 1 3 0
+Output format
+
+The solvers must output messages on the standard output that will be used to check the results. The output format is inspired by the DIMACS output specification of the SAT competition and may be used to manually check some results.
+
+The solver cannot write to any files except standard output and standard error (only standard output will be parsed for results, but both output and error will be memorized during the whole evaluation process, for all executions).
+
+Messages
+
+Comments ("c " lines):
+These lines start by the two characters: lower case 'c' followed by a space (ASCII code 32).
+These lines are optional and may appear anywhere in the solver output.
+They contain any information that authors want to emphasize, such as #backtracks, #flips,... or internal cpu-time.
+Submitters are advised to avoid outputting comment lines which may be useful in an interactive environment but otherwise useless in a batch environment.
+
+Current optimal solution ("o " lines):
+These lines start by the two characters: lower case 'o' followed by a space (ASCII code 32).
+An "o " line must contain the lower case 'o' followed by a space and then by an integer which represents the better solution found so far, i.e., the minimum number of unsatisfied clauses by the current solution for Max-SAT or the minimum sum of weights of unsatisfied clauses for Weighted Max-SAT.
+These lines are mandatory and solvers must output them as soon as they find a new best solution. Programmers are advised to flush immediately the output stream.
+The evaluation environment will take as optimal solution by the solver the last "o " line in the output stream.
+
+Solution ("s " line):
+This line starts by the two characters: lower case 's' followed by a space (ASCII code 32).
+Only one such line is allowed. It is mandatory.
+This line gives the answer of the solver. It must be one of the following answers:
+s OPTIMUM FOUND
+This line must be output when the solver has checked that the last "o " line is the optimal solution. The integer in the last "o " line must be the minimum number (or the minimum sum of weights for Weighted Max-SAT) of unsatisfied clauses when we give a complete assignment to the variables of the formula.
+s UNSATISFIABLE
+This line must be output when the solves has checked that the set of hard clauses is unsatisfiable.
+s UNKNOWN
+This line must be output in any other case, i.e. when the solver is not able to tell anything about the formula.
+It is of uttermost importance to respect the exact spelling of these answers. Any mistake in the writing of these lines will cause the answer to be disregarded.
+
+If the solver does not display a solution line (or if the solution line is not valid), then UNKNOWN will be assumed.
+
+
+Values ("v " lines):
+These lines start by the two characters: lower case 'v' followed by a space (ASCII code 32).
+More than one "v " line is allowed but the evaluation environment will act as if their content was merged. It is mandatory.
+If the solver finds an optimal solution (it outputs "s OPTIMUM FOUND"), it must provide a truth assignment to the variables of the instance that will be used to check the correctness of the answer, i.e., it must provide a list of non-complementary literals which, when interpreted to true, unsatisfy the minimal number of clauses of the input formula (or minimizes the sum of weights of unsatisfied clauses for Weighted Max-SAT).
+A literal is denoted by an integer that identifies the variable and the negation of a literal is denoted by a minus sign immediately followed by the integer of the variable.
+The solution line must define the value of each variable. The order of literals does not matter.
+If the solver does not output a value line, or if the value line is misspelled, then UNKNOWN will be assumed.
+All the lines must be ended by a standard Unix end of line character ('\n');
+Examples
+
+c -----------------
+c My Max-SAT Solver
+c -----------------
+o 10
+o 7
+o 6
+o 5
+s OPTIMUM FOUND
+v -1 2 3 -4 -5 6 -7 8 9 10 -11 -12 13 -14 -15
+
+c --------------------------
+c My Weighted Max-SAT Solver
+c --------------------------
+o 481
+o 245
+o 146
+o 145
+o 144
+o 143
+s OPTIMUM FOUND
+v -1 2 3 -4 -5 6 -7 8 9 10 -11 -12 13 -14 -15 16 -17 18 19 20

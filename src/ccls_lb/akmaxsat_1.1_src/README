@@ -1,0 +1,75 @@
+akmaxsat is a MAX-SAT solver based on the description in
+"Improved Exact Solver for the Weighted Max-SAT Problem"
+(presented at the PoS10 workshop, to appear in Easychair
+ electronic proceedings). The license for the software is
+described in the file COPYRIGHT
+
+The following files are in the original distribution:
+akmaxsat.cpp
+cnf_formula.hpp
+clauses.cpp
+clauses.hpp
+restore_list.cpp
+restore_list.hpp
+Makefile
+Doxyfile
+COPYRIGHT
+README
+FILE-FORMAT
+
+Type make to get the executable called akmaxsat.
+The makefile can be adjusted to include the macro FORCE_LS, which
+results in akmaxsat calling the stochastic local search solver ubcsat
+( http://www.satlib.org/ubcsat/ ) in order to get an initial upper
+bound on the solution (akmaxsat expects the executable of ubcsat in
+the same directory as akmaxsat).
+In most cases this yields an overall speedup.
+
+Type doxygen to generate the code documentation (you need to update the
+file paths in Doxyfile first to make this work correctly).
+
+akmaxsat has one compulsory and one optional parameter:
+the first parameter is the path to the file containing
+a formula in cnf/wcnf format as specified for the
+MAX-SAT evaluations
+(see http://www.maxsat.udl.cat/10/requirements/)
+a copy of these can be found in the file FILE-FORMAT;
+the second (optional) parameter is the path to a file
+produced by the stochastic local search solver ubcsat (version 1.1)
+when called for example with the following parameters:
+
+ubcsat -alg irots [-w] -runs 10 -inst <cnf file> -r bestsol -r out /dev/null
+
+where the -w option is used for weighted formulas only. Of course,
+additional parameters may be used, for further information
+read the documentation of ubcsat.
+
+Following variants of akmaxsat can be compiled:
+
+The variants of akmaxsat mentioned in the paper
+"How to Improve Exact Solvers for the Max-SAT Problem" can be compiled
+as follows:
+no_gup			add -DNO_GUP in the Makefile
+no_prop_list	remove -DPROP_LIST in the Makefile
+no_fuip			add -DNO_FUIP in the Makefile
+
+no_gup is sometimes faster on crafted Max-SAT instances, no_prop_list
+and no_fuip are slower than akmaxsat in most cases.
+
+When adding -DFUIP in the Makefile a real FUIP detection is done
+instead of the optimized detection of _some_ unique implication point.
+This is usually slower.
+
+When adding -DRBFS in the Makefile a recursive best-first search
+Branch-and-Bound algorithm is used instead of depth-first search
+Branch-and-Bound. This is faster in some cases.
+
+When adding -DCALC_MH in the Makefile a method from the paper
+"Computing Equivalent Transformations for Combinatorial Optimization
+by Branch-and-Bound Search" is used to improve the lower bound further.
+It seems, however, that it usually is not able to improve the lower bound.
+Personal communication with the author revealed that this method does
+in fact not work as well as claimed in his paper, there was some mistake
+in the test results.
+
+Send questions and bug reports to akuegel@googlemail.com
