@@ -9,16 +9,22 @@ well as the CCLS2014 code.
 
 
 A detailed description of the algorithm and benchmarks are available in 
-Huang et al, PRB (2016) ([current preprint](https://arxiv.org/abs/1604.06722))
+Huang et al, "Finding and proving the exact ground state of a generalized
+Ising model by convex optimization and MAXSAT" PRB (2016) 
+([current preprint](https://arxiv.org/abs/1604.06722))
 
 
-Author:	Wenxuan Huang, Daniil Kitchaev
+Authors:
++ Ising solver implementation: Wenxuan Huang, Daniil Kitchaev
++ MAXSAT solvers: Chuan Luo (CCLS, CCLS\_to\_akmaxsat), Adrian Kuegel (akmaxsat)
 
 
 Contact: Wenxuan Huang (key01027ATmit.edu), Daniil Kitchaev (dkitchATmit.edu)
 
 
-If you use this code in your work, please cite Huang et al, PRB (2016) -
+If you use this code in your work, please cite Huang et al, "Finding and
+proving the exact ground state of a generalized Ising model by convex
+optimization and MAXSAT" PRB (2016) -
 ([current arXiv preprint](https://arxiv.org/abs/1604.06722))
 
 Prerequisites
