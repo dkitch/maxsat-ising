@@ -46,10 +46,17 @@ together. The main executable is "ising", while the others are needed for
 intermediate steps in the solver.
 Thus, to run the code, copy the entire contents of the bin/ directory to the
 directory where you have the J_config.in and J_in.in files:
+
+```bash
     cp <ising root>/bin/* <run_dir>/
+
+```
 And run the main executable:
+
+```bash
     cd <run_dir>/
     ./ising
+```
 
 
 Input
@@ -63,41 +70,44 @@ below and provided examples for the format of these files.
 ###ECIs (J_in.in)
 The first line of this file is
 
+```
 Constant <E0>
-
+```
 where <E0> gives the baseline energy of the system per lattice site in the case
 that all correlations are zero.
 
 The following sets of blocks, separated by a blank line, are formatted as
-
+```
 Cluster <N>
 <i0>,<j0>,<k0>,<p0>,<t0> <i1>,<j1>,<k1>,<p1>,<t1> <i2>,<j2>,<k2>,<p2>,<t2> ...
 J=<ECI>
-
+```
 where:
-- <N> is the index of cluster, starting with 1
-- <i0>,<j0>,<k0>,<p0>,<t0> give the set of sites belowing to the cluster.
++ `<N>` is the index of cluster, starting with 1
++ `<i0>,<j0>,<k0>,<p0>,<t0>` give the set of sites belowing to the cluster.
   Specifically, (i,j,k) specify unit cell translations of the site in question,
   p gives the index of the site within this unit cell, and t specifies the
   specie index occupying this site. Once again, note that i,j,k,p,t all begin
   at 1 rather than 0 as the 0-clusters are arbitary reference states.
-- <ECI> gives the ECI (energy) associated with the cluster  
++ `<ECI>` gives the ECI (energy) associated with the cluster
 
 ### Configuration (J_config.in)
-NSITES: Maximum number of sites in a unit cell to consider (default=50)
-NLOOPS: Number of lower bound optimization loops (default=4)
-LABEL: Label for the calculation (default=IS0)
-PREC: Numerical precision for the ECI's (default 1e-6)
-MODE_JPLUSMINUS: 0 - ECI's and correlations in 0/1 form (default) for site
-					 occupancy
-                 1 - ECI's and correlations in -1/+1 form for site occupancy
-MODE_SOLVER: 0 - Exact solution
-             1 - Pseudo-optimization without proof (default)
-             2 - Pseudo-optimization with proof
-MODE_VERBOSITY: 0 - Silent
-                1 - Input and output to stdout (default)
-                2 - General calculation defaults to stdout
-                3 - Every little detail to stdout
++ NSITES: Maximum number of sites in a unit cell to consider (default=50)
++ NLOOPS: Number of lower bound optimization loops (default=4)
++ LABEL: Label for the calculation (default=IS0)
++ PREC: Numerical precision for the ECI's (default 1e-6)
++ MODE_JPLUSMINUS:
+..+ 0 - ECI's and correlations in 0/1 form (default) for site occupancy
+..+ 1 - ECI's and correlations in -1/+1 form for site occupancy
++ MODE_SOLVER:
+..+ 0 - Exact solution
+..+ 1 - Pseudo-optimization without proof (default)
+..+ 2 - Pseudo-optimization with proof
++ MODE_VERBOSITY:
+..+ 0 - Silent
+..+ 1 - Input and output to stdout (default)
+..+ 2 - General calculation defaults to stdout
+..+ 3 - Every little detail to stdout
 
 Examples:
 ------------------------------------------------------------------------------
@@ -106,8 +116,8 @@ repulsive nearest-neighbor term, attractive next-nearest neighbor term,
 and slightly repulsive next-nearest-neighbor triplet.
 
 The second example is analogous to the cluster expansion provided for the
-Li-graphite system in Persson et al, PRB 82, 125416 (2010) as a model of Li
-intercalation into graphite. It is a 2D cluster expansion on a triangular
+Li-graphite system in [Persson et al, PRB 82, 125416 (2010)](http://journals.aps.org/prb/abstract/10.1103/PhysRevB.82.125416)
+ as a model of Li intercalation into graphite. It is a 2D cluster expansion on a triangular
 lattice, with pair terms only.
 
 In both cases the clusters are defined using the 0/1 convention for site
