@@ -115,7 +115,7 @@ where:
     + 2 - General calculation defaults to stdout
     + 3 - Every little detail to stdout
 
-Examples:
+Examples
 ------------------------------------------------------------------------------
 Two examples are provided. The first is a simple square lattice with a
 repulsive nearest-neighbor term, attractive next-nearest neighbor term,
